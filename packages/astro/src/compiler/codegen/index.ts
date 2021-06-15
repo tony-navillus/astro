@@ -171,6 +171,7 @@ function getComponentWrapper(_name: string, { url, importSpecifier }: ComponentI
 
 /** Evaluate expression (safely) */
 function compileExpressionSafe(raw: string): string {
+  console.log("RAW", raw)
   let { code } = transformSync(raw, {
     loader: 'tsx',
     jsxFactory: 'h',
