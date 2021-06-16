@@ -5,7 +5,7 @@ const transformPromise = import('./dist/compiler/index.js');
 const DEFAULT_HMR_PORT = 12321;
 
 /** @type {import('snowpack').SnowpackPluginFactory<any>} */
-module.exports = (snowpackConfig, { resolvePackageUrl, renderers, astroConfig } = {}) => {
+module.exports = (snowpackConfig, { resolvePackageUrl, renderers, astroConfig, configChangedCallback } = {}) => {
   let hmrPort = DEFAULT_HMR_PORT;
   return {
     name: 'snowpack-astro',
@@ -45,6 +45,10 @@ let __renderers = [${rendererServerPackages.map((_, i) => `__renderer_${i}`).joi
 ${contents}`;
         return result;
       }
+    },
+    fileChanged(fileLoc) {
+      this.markChanged('astro/runtime/config.js');
+      configChangedCallback();
     },
     config(snowpackConfig) {
       if(!isNaN(snowpackConfig.devOptions.hmrPort)) {
