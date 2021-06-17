@@ -1,5 +1,11 @@
 # astro
 
+## 0.13.11
+
+### Patch Changes
+
+- 6573bea: Fixed README header aspect ratio
+
 ## 0.13.10
 
 ### Patch Changes
